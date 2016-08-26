@@ -2,8 +2,13 @@ module Haskfem
     ( solvePoisson
     ) where
 
+import Numeric.LinearAlgebra
+
+import HaskfemInternal
+
 -- $setup
 -- >>> import Test.QuickCheck
+-- >>> import Numeric.LinearAlgebra
 
 -- | Return the solution of the Poisson's equation
 -- > -Δu = 1
@@ -17,13 +22,14 @@ module Haskfem
 --
 -- The solution is non negative everywhere:
 --
--- prop> solvePoisson (x :: Double) >= 0.0
+-- prop> solvePoisson (x :: R) >= 0.0
 --
 -- Dirichlet boundary conditions are fulfilled:
 --
--- >>> solvePoisson 0
+-- >>> solvePoisson 0.0
 -- 0.0
--- >>> solvePoisson 1
+-- >>> solvePoisson 1.0
 -- 0.0
-solvePoisson :: Double -> Double
-solvePoisson = const 0.0
+solvePoisson :: R -> R
+solvePoisson x = sum $ zipWith (*) (toList solVecFree) $ evalBasisF
+  where evalBasisF = fmap ($ x) basisFuncs
