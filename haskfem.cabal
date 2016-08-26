@@ -27,12 +27,14 @@ executable haskfem
   ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
   build-depends:       base
                      , haskfem
+                     , easyplot
   default-language:    Haskell2010
 
 test-suite haskfem-spec
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
+  other-modules:       HaskfemSpec
   build-depends:       base
                      , haskfem
                      , hspec >= 1.3

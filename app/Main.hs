@@ -1,6 +1,8 @@
 module Main where
 
+import Graphics.EasyPlot
+
 import Haskfem
 
-main :: IO ()
-main = print $ solvePoisson 0.2
+main :: IO Bool
+main = plot X11 solvePoisson
