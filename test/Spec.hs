@@ -1,2 +1,1 @@
-main :: IO ()
-main = putStrLn "Spec Test suite not yet implemented"
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}

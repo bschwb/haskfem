@@ -28,12 +28,14 @@ executable haskfem
                      , haskfem
   default-language:    Haskell2010
 
-test-suite haskfem-test
+test-suite haskfem-spec
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
   build-depends:       base
                      , haskfem
+                     , hspec >= 1.3
+                     , QuickCheck >= 2
   ghc-options:         -Wall -threaded -rtsopts -with-rtsopts=-N
   default-language:    Haskell2010
 
