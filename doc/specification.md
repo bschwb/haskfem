@@ -16,6 +16,14 @@ Discretization with piecewise linear finite elements on a equidistant grid of 10
 # API
 A function which returns the solution for the equation described above.
 The solution is a function which can be evaluated on the domain.
+For points outside of the domain, 0 should be returned.
 
     >>> let u = solvePoisson
-    >>> u 0.2
+    >>> u 0
+    0
+    >>> u 1
+    0
+    >>> u 0.5
+    >should be bigger than 0<
+    >>> u -0.2
+    0

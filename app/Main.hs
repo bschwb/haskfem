@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+import Haskfem
 
 main :: IO ()
-main = someFunc
+main = print $ solvePoisson 0.2
