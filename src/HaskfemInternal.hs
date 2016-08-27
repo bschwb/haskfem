@@ -1,7 +1,5 @@
 module HaskfemInternal
-    ( solVec
-    , solVecFree
-    , basisFuncs
+    ( basisFuncs
     , rhs
     , sysMatFreeFree
     , slopeAt
@@ -10,18 +8,12 @@ module HaskfemInternal
 
 import Numeric.LinearAlgebra
 
--- | The whole solution vector
--- Coefficients for the basis functions
-solVec :: Vector R
-solVec = vjoin [0.0, solVecFree, 0.0]
-
--- | The entries of the solution vector corresponding to free dofs
-solVecFree :: Vector R
-solVecFree = inv sysMatFreeFree #> rhs
-
 -- | The part of the right-hand side corresponding to the free dofs
-rhs :: Vector R
-rhs = fromList $ replicate 9 0.1
+--
+-- Takes a real number as constant right-hand side.
+rhs :: R        -- ^ @c@
+    -> Vector R
+rhs c = fromList . replicate 9 $ c * 0.1
 
 -- | The part of the system matrix corresponding to the free dofs
 sysMatFreeFree :: Matrix R

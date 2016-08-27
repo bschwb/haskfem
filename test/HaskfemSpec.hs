@@ -13,5 +13,5 @@ refSolution x | 0 <= x && x <= 1 = -(x^(2::Integer))/2.0 + x/2.0
 spec :: Spec
 spec = do
   describe "solvePoisson" $ do
-    prop "positive if the reference solution is positive" $ \x ->
-      (solvePoisson x > 0) == (refSolution x > 0)
+    prop "is positive if the reference solution is positive" $ \x ->
+      (solvePoisson 1.0 x > 0) == (refSolution x > 0)

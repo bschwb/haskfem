@@ -11,9 +11,9 @@ import HaskfemInternal
 -- >>> import Numeric.LinearAlgebra
 
 -- | Return the solution of the Poisson's equation
--- > -Δu = 1
+-- > -Δu = c
 --
--- * Right-hand side is 1
+-- * Right-hand side is a constant
 -- * Domain is the unit interval
 -- * homogeneous Dirichlet boundary conditions
 --
@@ -22,14 +22,15 @@ import HaskfemInternal
 --
 -- The solution is non negative everywhere:
 --
--- prop> solvePoisson (x :: R) >= 0.0
+-- prop> solvePoisson (c :: R) (x :: R) >= 0.0
 --
 -- Dirichlet boundary conditions are fulfilled:
 --
--- >>> solvePoisson 0.0
--- 0.0
--- >>> solvePoisson 1.0
--- 0.0
-solvePoisson :: R -> R
-solvePoisson x = sum $ zipWith (*) (toList solVecFree) $ evalBasisF
+-- prop> solvePoisson (c :: R) 0.0 == 0.0
+-- prop> solvePoisson (c :: R) 1.0 == 0.0
+solvePoisson :: R        -- ^ right-hand side constant @c@
+             -> (R -> R)
+solvePoisson c x = sum $ zipWith (*) (toList solVecFree) $ evalBasisF
   where evalBasisF = fmap ($ x) basisFuncs
+
+        solVecFree = inv sysMatFreeFree #> rhs c
