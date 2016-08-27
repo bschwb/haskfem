@@ -21,12 +21,12 @@ solVecFree = inv sysMatFreeFree #> rhs
 
 -- | The part of the right-hand side corresponding to the free dofs
 rhs :: Vector R
-rhs = fromList $ replicate 9 1.0
+rhs = fromList $ replicate 9 0.1
 
 -- | The part of the system matrix corresponding to the free dofs
 sysMatFreeFree :: Matrix R
 sysMatFreeFree = subMatrix (1, 1) (9, 9) sysMat
-  where sysMat = conv2 ((2><2) [1.0, -1.0, -1.0, 1.0]) (ident 10)
+  where sysMat = 10.0 * (conv2 ((2><2) [1.0, -1.0, -1.0, 1.0]) (ident 10))
 
 -- | List of basis functions for fe-space
 basisFuncs :: [R -> R]

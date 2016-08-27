@@ -18,15 +18,15 @@ Didn't work out for either back end.
 Built w/o errors and executed but didn't render anything.
 
 ### Chart-cairo
-(Gtk2Hs installation instructions)[https://wiki.haskell.org/Gtk2Hs/Installation] seemed to big for
-me and didn't try it.
+[Gtk2Hs installation instructions](https://wiki.haskell.org/Gtk2Hs/Installation) seemed to long
+and thus I didn't try it.
 
-## [dynamic-plot](http://hackage.haskell.org/package/dynamic-plot-0.1.3.0/docs/Graphics-Dynamic-Plot-R2.html)k
+## [dynamic-plot](http://hackage.haskell.org/package/dynamic-plot-0.1.3.0/docs/Graphics-Dynamic-Plot-R2.html)
 Wanted to use this first, but results in an error when trying to plot the solution.
 Seems like it wants to calculate a derivative somehow, which doesn't seem to be possible by default
 for a `R -> R` function which is somehow based on vectors / matrices.
 
-    λ: let pl = fnPlot solvePoisson 
+    λ: let pl = fnPlot solvePoisson
 
     <interactive>:10:17:
         Couldn't match type ‘manifolds-0.2.2.0:Data.Function.Differentiable.RWDfblFuncValue
