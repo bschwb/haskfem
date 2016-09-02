@@ -11,14 +11,15 @@ import Numeric.LinearAlgebra
 -- | The part of the right-hand side corresponding to the free dofs
 --
 -- Takes a real number as constant right-hand side.
-rhs :: R        -- ^ @c@
+rhs :: R        -- ^ @f@
     -> Vector R
-rhs c = fromList . replicate 9 $ c * 0.1
+rhs f = fromList . replicate 9 $ f * 0.1
 
 -- | The part of the system matrix corresponding to the free dofs
-sysMatFreeFree :: Matrix R
-sysMatFreeFree = subMatrix (1, 1) (9, 9) sysMat
-  where sysMat = 10.0 * (conv2 ((2><2) [1.0, -1.0, -1.0, 1.0]) (ident 10))
+sysMatFreeFree :: R        -- ^ the constant parameter @c@ of the left-hand side
+               -> Matrix R
+sysMatFreeFree c = subMatrix (1, 1) (9, 9) sysMat
+  where sysMat = (scalar c) * 10.0 * (conv2 ((2><2) [1.0, -1.0, -1.0, 1.0]) (ident 10))
 
 -- | List of basis functions for fe-space
 basisFuncs :: [R -> R]

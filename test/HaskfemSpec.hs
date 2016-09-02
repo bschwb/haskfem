@@ -14,4 +14,4 @@ spec :: Spec
 spec = do
   describe "solvePoisson" $ do
     prop "is positive if the reference solution is positive" $ \x ->
-      (solvePoisson 1.0 x > 0) == (refSolution x > 0)
+      (solvePoisson 1.0 1.0 x > 0) == (refSolution x > 0)
