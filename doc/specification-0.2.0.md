@@ -20,7 +20,7 @@ Addition of lhs and rhs constant specification and providing a grid
     solvePoisson :: Grid -> R -> R -> (R -> R)
     solvePoisson grid lhs rhs
 
-    >>> standardInterval = 0.0 1.0 10
+    >>> standardInterval = makeInterval 0.0 1.0 10
     >>> let u = solvePoisson standardInterval 2.0 3.0
     >>> u 0.0
     0.0
